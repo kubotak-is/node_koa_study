@@ -17,6 +17,7 @@ const views  = require('koa-views');
 const common = require('koa-common');
 const cache  = require('koa-static-cache');
 const route  = require(__dirname + '/app/routes/route');
+const config = require(__dirname + '/config/const.json');
 
 // app instans
 const app   = module.exports = koa();
@@ -40,4 +41,9 @@ app.use(cache(__dirname + '/public'), {
   maxAge: 1 * 24 * 60 * 60
 });
 
-app.listen(80);
+let port = config.AppPort;
+app.listen(port, () => {
+  console.log('Server listeing at port %d', port);
+});
+
+module.exports = app;
