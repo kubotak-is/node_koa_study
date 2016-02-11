@@ -15,6 +15,7 @@
 const koa    = require('koa');
 const views  = require('koa-views');
 const common = require('koa-common');
+const cache  = require('koa-static-cache');
 const route  = require(__dirname + '/app/routes/route');
 
 // app instans
@@ -32,5 +33,11 @@ route(app);
 
 // static file
 app.use(common.static(__dirname + '/public'));
+
+// cache
+app.use(cache(__dirname + '/public'), {
+  // 1 day
+  maxAge: 1 * 24 * 60 * 60
+});
 
 app.listen(80);
