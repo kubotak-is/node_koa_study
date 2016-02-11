@@ -12,10 +12,10 @@
 /**
  * require
  */
-const koa   = require('koa');
-const views = require('koa-views');
-const serve = require('koa-static');
-const route = require(__dirname + '/app/routes/route');
+const koa    = require('koa');
+const views  = require('koa-views');
+const common = require('koa-common');
+const route  = require(__dirname + '/app/routes/route');
 
 // app instans
 const app   = module.exports = koa();
@@ -31,6 +31,6 @@ app.use(
 route(app);
 
 // static file
-app.use(serve(__dirname + '/public'));
+app.use(common.static(__dirname + '/public'));
 
 app.listen(80);
