@@ -13,12 +13,19 @@
  * require
  */
 const koa   = require('koa');
+const views = require('koa-views');
 const serve = require('koa-static');
-const views = require('co-views');
 const route = require(__dirname + '/app/routes/route');
 
 // app instans
 const app   = module.exports = koa();
+
+// template engin
+app.use(
+  views(__dirname + '/template', {
+    map: { html: 'ect'}
+  })
+);
 
 // route
 route(app);

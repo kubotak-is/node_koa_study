@@ -5,13 +5,21 @@
  */
 'use strict'
 
+/**
+ * require
+ */
 const route = require('koa-route');
 
+/**
+ * exports
+ */
 module.exports = (app) => {
   // root
   app.use(
     route.get('/', function *() {
-      this.body = 'Hello World!';
+      yield this.render('index.ect', {
+        title: 'this is index'
+      });
     })
   )
   // test page
