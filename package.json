@@ -1,11 +1,10 @@
 {
-  "name": "koa_chat",
-  "version": "0.0.1",
+  "name": "node_koa_study",
+  "version": "0.0.2",
   "description": "node study",
   "main": "app.js",
   "scripts": {
-    "start": "sudo node --harmony app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "sudo node --harmony app.js"
   },
   "repository": {},
   "author": "kubotak-is",
@@ -17,6 +16,10 @@
     "koa-common": "^1.2.0",
     "koa-route": "^2.4.2",
     "koa-static-cache": "^3.1.4",
-    "koa-views": "^4.0.1"
+    "koa-views": "^4.0.1",
+    "socket.io": "^1.4.5"
+  },
+  "engine": {
+    "node": ">=0.11"
   }
 }
