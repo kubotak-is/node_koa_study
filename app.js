@@ -13,13 +13,17 @@
  * require
  */
 const koa   = require('koa');
-const path  = require('path');
 const serve = require('koa-static');
 const views = require('co-views');
+const route = require(__dirname + '/app/routes/route');
 
+// app instans
 const app   = module.exports = koa();
 
 // route
-(require(path.resolve('app/routes', 'route')))(app);
+route(app);
+
+// static file
+app.use(serve(__dirname + '/public'));
 
 app.listen(80);
