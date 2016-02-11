@@ -1,0 +1,20 @@
+{
+  "name": "koa_chat",
+  "version": "0.0.1",
+  "description": "node study",
+  "main": "index.js",
+  "scripts": {
+    "start": "sudo node --harmony app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kubotak-is",
+  "license": "MIT",
+  "dependencies": {
+    "co-views": "^2.1.0",
+    "config": "^1.19.0",
+    "koa": "^1.1.2",
+    "koa-route": "^2.4.2",
+    "koa-static": "^2.0.0",
+    "path": "^0.12.7"
+  }
+}
