@@ -6,31 +6,24 @@
  * author: kubotak-is
  *
  */
-
 'use strict'
 
 /**
  * require
  */
-const koa    = require('koa');
-const views  = require('koa-views');
-const common = require('koa-common');
-const cache  = require('koa-static-cache');
-const route  = require(__dirname + '/app/routes/route');
-const config = require(__dirname + '/config/const.json');
+const
+    koa    = require('koa'),
+    common = require('koa-common'),
+    cache  = require('koa-static-cache'),
+    config = require(__dirname + '/config/const.json');
 
 // app instans
-const app   = module.exports = koa();
+const app = module.exports = koa();
 
 // template engin
-app.use(
-  views(__dirname + '/template', {
-    map: { html: 'ect'}
-  })
-);
-
-// route
-route(app);
+let renderer = require(__dirname + '/app/middleware/render.js');
+// routing
+require(__dirname + '/app/routes/route.js')(app, renderer);
 
 // static file
 app.use(common.static(__dirname + '/public'));
@@ -39,6 +32,11 @@ app.use(common.static(__dirname + '/public'));
 app.use(cache(__dirname + '/public'), {
   // 1 day
   maxAge: 1 * 24 * 60 * 60
+});
+
+// error handling
+app.on('error', (err) => {
+  console.error('server error', err);
 });
 
 let port = config.AppPort;

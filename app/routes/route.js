@@ -8,25 +8,22 @@
 /**
  * require
  */
-const route = require('koa-route');
+const
+    _router = require('koa-router'),
+    router  = new _router();
 
 /**
  * exports
  */
-module.exports = (app) => {
+module.exports = (app, renderer) => {
+
   // root
-  app.use(
-    route.get('/', function *() {
-      yield this.render('index.ect', {
-        title: 'this is index'
-      });
-    })
-  )
-  // test page
-  .use(
-    route.get('/test/:name', function *(name) {
-      this.body = 'my name is ' + name;
-    })
-  );
+  router.get('/', function* (next) {
+    this.body = renderer.render('index.ect', {
+      title: 'this is index'
+    });
+  });
+
+  app.use(router.middleware());
 
 }
