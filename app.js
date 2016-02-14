@@ -34,6 +34,10 @@ app.use(cache(__dirname + '/public'), {
   maxAge: 1 * 24 * 60 * 60
 });
 
+// socket.io
+let server = require('http').Server(app.callback());
+require(__dirname + '/app/middleware/io.js')(server);
+
 // error handling
 app.on('error', (err) => {
   console.error('server error', err);
